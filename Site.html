@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sporting Clube de Esmoriz</title>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #d71920; /* vermelho do clube */
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #f0a500;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Home - destaque */
+    .hero {
+      background: url('https://i.imgur.com/3Xq6Q0B.jpg') center/cover no-repeat;
+      height: 400px;
+      border-radius: 10px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 2rem;
+      box-shadow: inset 0 0 0 1000px rgba(215, 25, 32, 0.6);
+      margin-bottom: 3rem;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 5px #000;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    /* Seção Equipa */
+    section#team {
+      margin-bottom: 3rem;
+    }
+
+    section#team h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #d71920;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .players-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .player-card {
+      background: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .player-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(215, 25, 32, 0.5);
+    }
+
+    .player-photo {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background-color: #ddd;
+    }
+
+    .player-info {
+      padding: 1rem;
+    }
+
+    .player-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      color: #d71920;
+    }
+
+    .player-position {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* Calendário */
+    section#schedule {
+      margin-bottom: 3rem;
+    }
+
+    section#schedule h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #d71920;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
+      max-width: 900px;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background-color: #d71920;
+      color: white;
+      font-weight: 700;
+    }
+
+    /* Notícias */
+    section#news {
+      margin-bottom: 3rem;
+    }
+
+    section#news h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #d71920;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .news-item {
+      max-width: 900px;
+      margin: 0 auto 1.5rem auto;
+      padding: 1rem;
+      border-left: 5px solid #d71920;
+      background: #f9f9f9;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .news-item h3 {
+      margin-bottom: 0.5rem;
+      color: #d71920;
+    }
+
+    .news-item p {
+      color: #333;
+    }
+
+    /* História */
+    section#history {
+      margin-bottom: 3rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 1rem;
+    }
+
+    section#history h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #d71920;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    section#history p {
+      font-size: 1.1rem;
+      color: #444;
+      text-align: justify;
+      line-height: 1.8;
+    }
+
+    /* Contactos */
+    footer {
+      background-color: #222;
+      color: #eee;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    footer a {
+      color: #f0a500;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sporting Clube de Esmoriz</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Início</a></li>
+        <li><a href="#team">Equipa</a></li>
+        <li><a href="#schedule">Calendário</a></li>
+        <li><a href="#news">Notícias</a></li>
+        <li><a href="#history">História</a></li>
+        <li><a href="#contact">Contactos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero" aria-label="Apresentação do Sporting Clube de Esmoriz">
+      <h2>Guerreiros da Barrinha</h2>
+      <p>Bem-vindo ao site oficial do Sporting Clube de Esmoriz, um clube com história, paixão e dedicação ao futebol.</p>
+    </section>
+
+    <section id="team" aria-label="Equipa do Sporting Clube de Esmoriz">
+      <h2>Equipa</h2>
+      <div class="players-grid" id="playersGrid">
+        <!-- Jogadores serão inseridos aqui via JavaScript -->
+      </div>
+    </section>
+
+    <section id="schedule" aria-label="Calendário de jogos">
+      <h2>Calendário</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Adversário</th>
+            <th>Local</th>
+            <th>Resultado</th>
+          </tr>
+        </thead>
+        <tbody id="scheduleBody">
+          <!-- Jogos serão inseridos aqui via JavaScript -->
+        </tbody>
+      </table>
+    </section>
+
+    <section id="news" aria-label="Notícias do clube">
+      <h2>Notícias</h2>
+      <div id="newsContainer">
+        <!-- Notícias serão inseridas aqui via JavaScript -->
+      </div>
+    </section>
+
+    <section id="history" aria-label="História do clube">
+      <h2>História</h2>
+      <p>
+        Fundado em 1932, o Sporting Clube de Esmoriz é um clube com uma rica tradição no futebol português. Conhecido como "Guerreiros da Barrinha", o clube tem uma história marcada por conquistas regionais e uma forte ligação à comunidade local. Ao longo dos anos, enfrentou desafios e triunfos, mantendo sempre a paixão pelo desporto e o compromisso com os seus adeptos.
+      </p>
+    </section>
+  </main>
+
+  <footer id="contact" aria-label="Contactos do clube">
+    <p>Contacte-nos: <a href="mailto:geral@scesmoriz.pt">geral@scesmoriz.pt</a> | Telefone: +351 234 567 890</p>
+    <p>Siga-nos nas redes sociais: 
+      <a href="#" aria-label="Facebook do Sporting Clube de Esmoriz">Facebook</a> | 
+      <a href="#" aria-label="Instagram do Sporting Clube de Esmoriz">Instagram</a> | 
+      <a href="#" aria-label="Twitter do Sporting Clube de Esmoriz">Twitter</a>
+    </p>
+    <p>© 2024 Sporting Clube de Esmoriz. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Dados dos jogadores - substitua as URLs das imagens para editar as fotos futuramente
+    const players = [
+      {
+        name: "João Silva",
+        position: "Guarda-Redes",
+        photo: "https://cdn.zerozero.pt/img/players/123456_joao_silva.jpg"
+      },
+      {
+        name: "Miguel Santos",
+        position: "Defesa Central",
+        photo: "https://cdn.zerozero.pt/img/players/234567_miguel_santos.jpg"
+      },
+      {
+        name: "Pedro Alves",
+        position: "Médio",
+        photo: "https://cdn.zerozero.pt/img/players/345678_pedro_alves.jpg"
+      },
+      {
+        name: "Rui Costa",
+        position: "Avançado",
+        photo: "https://cdn.zerozero.pt/img/players/456789_rui_costa.jpg"
+      }
+      // Adicione mais jogadores conforme necessário
+    ];
+
+    const playersGrid = document.getElementById('playersGrid');
+
+    players.forEach(player => {
+      const card = document.createElement('div');
+      card.classList.add('player-card');
+
+      const img = document.createElement('img');
+      img.classList.add('player-photo');
+      img.src = player.photo;
+      img.alt = `Foto de ${player.name}`;
+      img.loading = "lazy";
+
+      const info = document.createElement('div');
+      info.classList.add('player-info');
+
+      const name = document.createElement('h3');
+      name.classList.add('player-name');
+      name.textContent = player.name;
+
+      const position = document.createElement('p');
+      position.classList.add('player-position');
+      position.textContent = player.position;
+
+      info.appendChild(name);
+      info.appendChild(position);
+
+      card.appendChild(img);
+      card.appendChild(info);
+
+      playersGrid.appendChild(card);
+    });
+
+    // Dados do calendário - substitua conforme necessário
+    const schedule = [
+      { date: "2024-08-15", opponent: "AD Ovarense", location: "Casa", result: "-" },
+      { date: "2024-08-22", opponent: "FC Cortegaça", location: "Fora", result: "-" },
+      { date: "2024-08-29", opponent: "SC Espinho", location: "Casa", result: "-" }
+      // Adicione mais jogos
+    ];
+
+    const scheduleBody = document.getElementById('scheduleBody');
+
+    schedule.forEach(game => {
+      const tr = document.createElement('tr');
+
+      const tdDate = document.createElement('td');
+      tdDate.textContent = new Date(game.date).toLocaleDateString('pt-PT', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+      const tdOpponent = document.createElement('td');
+      tdOpponent.textContent = game.opponent;
+
+      const tdLocation = document.createElement('td');
+      tdLocation.textContent = game.location;
+
+      const tdResult = document.createElement('td');
+      tdResult.textContent = game.result;
+
+      tr.appendChild(tdDate);
+      tr.appendChild(tdOpponent);
+      tr.appendChild(tdLocation);
+      tr.appendChild(tdResult);
+
+      scheduleBody.appendChild(tr);
+    });
+
+    // Notícias - substitua ou adicione conforme necessário
+    const news = [
+      {
+        title: "Início da época 2024/2025",
+        content: "O Sporting Clube de Esmoriz inicia a nova temporada com ambição e reforços importantes para alcançar os objetivos."
+      },
+      {
+        title: "Nova parceria com a PLAYOFF",
+        content: "O clube renovou o contrato com a marca PLAYOFF para fornecimento do material desportivo oficial."
+      }
+    ];
+
+    const newsContainer = document.getElementById('newsContainer');
+
+    news.forEach(item => {
+      const div = document.createElement('div');
+      div.classList.add('news-item');
+
+      const h3 = document.createElement('h3');
+      h3.textContent = item.title;
+
+      const p = document.createElement('p');
+      p.textContent = item.content;
+
+      div.appendChild(h3);
+      div.appendChild(p);
+
+      newsContainer.appendChild(div);
+    });
+  </script>
+</body>
+</html>
